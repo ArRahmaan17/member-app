@@ -11,9 +11,11 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/container_about_user"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/secondary"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +24,7 @@
         <RelativeLayout
             android:id="@+id/container_rl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/container_user"
@@ -47,6 +48,7 @@
                     app:layout_constraintVertical_bias="0.19999999" />
 
                 <TextView
+                    android:id="@+id/title_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -98,162 +100,26 @@
         android:layout_margin="5dp"
         android:text="Promo Terbaru"
         android:textColor="@color/black"
+        android:fontFamily="sans-serif-light"
         android:textSize="34sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_about_user" />
 
-    <HorizontalScrollView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/container_promos"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:fadeScrollbars="true"
         android:scrollbarSize=".5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/promos_title">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:text="Promo Dummy 1"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:text="Promo Dummy 2"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:text="Promo Dummy 3"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:text="Promo Dummy 4"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:text="Promo Dummy 5"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:text="Promo Dummy 6"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/container_all_news"
@@ -263,334 +129,23 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/news_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Berita Terbaru"
+            android:fontFamily="sans-serif-light"
             android:layout_margin="5dp"
             android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="italic" />
 
-        <ScrollView
-            android:id="@+id/scrollView2"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/container_news"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/news_title">
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/container_news"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        </androidx.recyclerview.widget.RecyclerView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/secondary">
-
-                        <LinearLayout
-                            android:id="@+id/container_title1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/content_title1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="Berita Dummy 1"
-                                android:textColor="@color/black"
-                                android:textSize="20dp" />
-
-                            <TextView
-                                android:id="@+id/content_post1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/content_date1"
-                                android:padding="5dp"
-                                android:text="30 Desember 2022"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/content_date1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/container_title1"
-                            android:padding="5dp"
-                            android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?"
-                            android:textColor="@color/black"
-                            android:textSize="18dp"
-                            android:textStyle="normal" />
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/secondary">
-
-                        <LinearLayout
-                            android:id="@+id/container_title5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/content_title5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="Berita Dummy 1"
-                                android:textColor="@color/black"
-                                android:textSize="20dp" />
-
-                            <TextView
-                                android:id="@+id/content_post5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/content_date5"
-                                android:padding="5dp"
-                                android:text="30 Desember 2022"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/content_date5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/container_title5"
-                            android:padding="5dp"
-                            android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?"
-                            android:textColor="@color/black"
-                            android:textSize="18dp"
-                            android:textStyle="normal" />
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/secondary">
-
-                        <LinearLayout
-                            android:id="@+id/container_title6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/content_title6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="Berita Dummy 1"
-                                android:textColor="@color/black"
-                                android:textSize="20dp" />
-
-                            <TextView
-                                android:id="@+id/content_post6"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/content_date6"
-                                android:padding="5dp"
-                                android:text="30 Desember 2022"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/content_date6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/container_title6"
-                            android:padding="5dp"
-                            android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?"
-                            android:textColor="@color/black"
-                            android:textSize="18dp"
-                            android:textStyle="normal" />
-
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/secondary">
-
-                        <LinearLayout
-                            android:id="@+id/container_title2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/content_title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="Berita Dummy 1"
-                                android:textColor="@color/black"
-                                android:textSize="20dp" />
-
-                            <TextView
-                                android:id="@+id/content_post2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="30 Desember 2022"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/content_date2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/container_title2"
-                            android:padding="5dp"
-                            android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?"
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
-
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/secondary">
-
-                        <LinearLayout
-                            android:id="@+id/container_title3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/content_title3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="Berita Dummy 1"
-                                android:textColor="@color/black"
-                                android:textSize="20dp" />
-
-                            <TextView
-                                android:id="@+id/content_post3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="30 Desember 2022"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/content_date3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/container_title3"
-                            android:padding="5dp"
-                            android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?"
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
-
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:cardCornerRadius="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/secondary">
-
-                        <LinearLayout
-                            android:id="@+id/container_title4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/content_title4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="Berita Dummy 1"
-                                android:textColor="@color/black"
-                                android:textSize="20dp" />
-
-                            <TextView
-                                android:id="@+id/content_post4"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="30 Desember 2022"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/content_date4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/container_title4"
-                            android:padding="5dp"
-                            android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?"
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
-
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-        </ScrollView>
     </LinearLayout>
 
 

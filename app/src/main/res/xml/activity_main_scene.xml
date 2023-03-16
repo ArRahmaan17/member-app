@@ -4,8 +4,8 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
+        motion:constraintSetEnd="@+id/end"
         motion:duration="2000">
        <KeyFrameSet>
            <KeyAttribute

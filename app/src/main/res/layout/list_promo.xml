@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:minWidth="1dp"
+    android:minHeight="1dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:id="@+id/container_promos_list"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/promo_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_launcher_background"/>
+            <TextView
+                android:id="@+id/title_promo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:fontFamily="sans-serif-light"
+                android:layout_below="@+id/promo_image"
+                android:text="Promo Dummy 1"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
+                android:textSize="17dp" />
+            <TextView
+                android:id="@+id/content_promo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:fontFamily="sans-serif-light"
+                android:padding="5dp"
+                android:layout_below="@id/title_promo"
+                android:text="Promo Dummy 1"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
