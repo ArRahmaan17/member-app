@@ -46,7 +46,7 @@
             android:id="@+id/container_about_user"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             android:visibility="visible" />
@@ -54,7 +54,7 @@
             android:id="@+id/container_promos"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             android:visibility="visible" />
@@ -62,7 +62,7 @@
             android:id="@+id/promos_title"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@+id/container_about_user"
             motion:layout_constraintStart_toStartOf="parent"
             android:visibility="visible" />

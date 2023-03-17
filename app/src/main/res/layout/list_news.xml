@@ -48,7 +48,6 @@
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
-
             </LinearLayout>
 
             <TextView
