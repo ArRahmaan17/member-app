@@ -3,30 +3,34 @@ package com.maman.memberapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-
+import android.widget.TextView;
 import com.maman.memberapp.model.News_model;
 import com.maman.memberapp.model.Promos_Model;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ArrayList<Promos_Model> PromoList = new ArrayList<Promos_Model>();
     private ArrayList<News_model> NewsList = new ArrayList<News_model>();
+    private TextView userId, pointUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        addPromos();
+        initializationApp();
     }
-    private void addPromos() {
+    private void initializationApp() {
+        userId = (TextView) findViewById(R.id.title_user);
+        pointUser = (TextView) findViewById(R.id.title_point);
+        userId.setText("Test User");
+        pointUser.setText("5.000.000");
         PromoList.add(new Promos_Model("Dummy Promo 1", "Test Promo"));
         PromoList.add(new Promos_Model("Dummy Promo 2", "Test Promo"));
         PromoList.add(new Promos_Model("Dummy Promo 3", "Test Promo"));
