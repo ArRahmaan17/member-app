@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main"
     app:layoutDescription="@xml/activity_login_scene"
     tools:context=".LoginActivity">
 
@@ -12,6 +13,7 @@
         android:id="@+id/container_image_app"
         android:layout_width="match_parent"
         app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,15 +43,7 @@
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             app:srcCompat="@mipmap/ic_logo" />
-<!--        <EditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Username"/>-->
-<!--        -->
-<!--        <EditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Password"/>-->
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,8 +53,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username_input"
                 android:layout_width="match_parent"
+                android:maxLength="13"
                 android:layout_height="wrap_content"
-                android:hint="Username" />
+                android:inputType="number"
+                android:hint="Phone Number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -72,9 +68,19 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:id="@+id/password_input"
                 android:hint="Password" />
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/register_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/app"
+            android:textAlignment="textEnd"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:text="Registration"/>
     </LinearLayout>
 
     <Button
@@ -84,6 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="30dp"
+        android:backgroundTint="@color/app"
         app:layout_constraintTop_toBottomOf="@id/container_login_form"
         android:text="Login" />
 

@@ -10,15 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.maman.memberapp.model.News_model;
+import com.maman.memberapp.model.NewsModel;
 
 import java.util.ArrayList;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     private Context context;
-    private ArrayList<News_model> NewsList = new ArrayList<News_model>();
+    private ArrayList<NewsModel> NewsList = new ArrayList<NewsModel>();
 
-    public NewsAdapter(Context context, ArrayList<News_model> newsList) {
+    public NewsAdapter(Context context, ArrayList<NewsModel> newsList) {
         this.context = context;
         NewsList = newsList;
     }
@@ -32,7 +32,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NewsHolder holder, int position) {
-        News_model News = NewsList.get(position);
+        NewsModel News = NewsList.get(position);
         Log.d("jingan", News.getTitle());
         holder.title.setText(News.getTitle());
         holder.date.setText(News.getDate());

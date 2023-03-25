@@ -1,9 +1,9 @@
 package com.maman.memberapp.model;
 
-public class News_model {
+public class NewsModel {
     String title, date, content;
 
-    public News_model(String title, String date, String content) {
+    public NewsModel(String title, String date, String content) {
         this.title = title;
         this.date = date;
         this.content = content;

@@ -1,26 +1,23 @@
 package com.maman.memberapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.maman.memberapp.model.Promos_Model;
+import com.maman.memberapp.model.PromosModel;
 
 import java.util.ArrayList;
 
 public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoHolder> {
     private Context context;
-    private ArrayList<Promos_Model> PromoList = new ArrayList<Promos_Model>();
-    public PromoAdapter(Context context, ArrayList<Promos_Model> promoList) {
+    private ArrayList<PromosModel> PromoList = new ArrayList<PromosModel>();
+    public PromoAdapter(Context context, ArrayList<PromosModel> promoList) {
         this.context = context;
         PromoList = promoList;
     }
@@ -34,7 +31,7 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoHolder>
 
     @Override
     public void onBindViewHolder(@NonNull PromoHolder holder, int position) {
-        Promos_Model promos_model = PromoList.get(position);
+        PromosModel promos_model = PromoList.get(position);
         holder.title.setText(promos_model.getTitle());
 
         holder.itemView.setOnClickListener(

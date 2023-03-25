@@ -1,12 +1,9 @@
 package com.maman.memberapp.model;
 
-public class Promos_Model {
+public class PromosModel {
     String title, detail;
 
-    public Promos_Model(String title, String detail) {
-        this.title = title;
-        this.detail = detail;
-    }
+    public PromosModel(String title, String detail) {this.title = title;this.detail = detail;}
 
     public void setTitle(String title) {
         this.title = title;
