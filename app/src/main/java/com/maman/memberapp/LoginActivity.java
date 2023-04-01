@@ -9,13 +9,22 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.maman.memberapp.credentials.LoginCredentials;
+import com.maman.memberapp.model.UserModel;
+import com.maman.memberapp.response.LoginResponse;
+import com.maman.memberapp.route.Endpoint;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     private Handler handlerMotionLayout;
@@ -41,14 +50,10 @@ public class LoginActivity extends AppCompatActivity {
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Username.getText().toString().isEmpty() && Password.getText().toString().isEmpty()){
+                if(Username.getText().toString().isEmpty() || Password.getText().toString().isEmpty()){
                     Username.requestFocus();
                 }else{
-                    SharedPreferences sharedPreferences = getSharedPreferences("UserActive", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", Username.getText().toString());
-                    editor.apply();
-                    IntentActivity();
+                    processLoginUser(Username.getText().toString(), Password.getText().toString());
                 }
             }
         });
@@ -61,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         handlerMotionLayout = new Handler();
-        handlerFocusInputText = new Handler();
 
         // Delay the start of the animation by 3 seconds (adjust as needed)
         handlerMotionLayout.postDelayed(new Runnable() {
@@ -70,13 +74,53 @@ public class LoginActivity extends AppCompatActivity {
                 MotionLogin.transitionToEnd();
             }
         }, 1500);
-        handlerFocusInputText.postDelayed(new Runnable() {
+    }
+
+    private boolean processLoginUser(String username, String password){
+        Retrofit loginRetrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        Endpoint endpoint = loginRetrofit.create(Endpoint.class);
+        LoginCredentials user = new LoginCredentials(username, password);
+        Call<LoginResponse> call = endpoint.login(user);
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void run() {
-//                Username.requestFocus();
-                Log.d("focus", "run: focus input");
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                Log.d("login", "onResponse: " + response.code());
+                if(!response.isSuccessful()){
+                    if(response.code() == 404){
+                        Toast.makeText(LoginActivity.this, ""+response.code() + " Your credentials not match to our records", Toast.LENGTH_SHORT).show();
+                    }else if(response.code() == 422){
+                        Toast.makeText(LoginActivity.this, ""+response.code() + " Please Check Your Phone Number and Password", Toast.LENGTH_SHORT).show();
+                    }
+                    return;
+                }
+                Toast.makeText(LoginActivity.this, response.body().getStatus()+ " "+ response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = getSharedPreferences("UserActive", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String userString = gson.toJson(response.body().getUser());
+                UserModel user = gson.fromJson(userString, UserModel.class);
+                Log.d("login", "onResponse: " + String.valueOf(user.getId()));
+                editor.putInt("id", user.getId());
+                editor.putString("name", user.getName());
+                editor.putString("phone_number", user.getPhone_number());
+                editor.putString("address", user.getAddress());
+                editor.putString("referral_code", user.getReferral_code());
+                editor.putBoolean("developer", user.isDeveloper());
+                editor.putString("personal_token", response.body().getToken());
+                editor.apply();
+                IntentActivity();
             }
-        }, 3000);
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+            }
+        });
+//        Toast.makeText(this, "Login "+ username+" "+password, Toast.LENGTH_SHORT).show();
+        return false;
     }
     public void IntentActivity(){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

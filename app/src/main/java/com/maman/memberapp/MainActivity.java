@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void initializationApp() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserActive", Context.MODE_PRIVATE);
-        Username = sharedPreferences.getString("username", "").toString();
+        Username = sharedPreferences.getString("name", "").toString();
         userId = (TextView) findViewById(R.id.title_user);
         pointUser = (TextView) findViewById(R.id.title_point);
         userId.setText(Username);
