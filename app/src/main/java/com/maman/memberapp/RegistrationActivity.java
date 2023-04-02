@@ -2,7 +2,9 @@ package com.maman.memberapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -37,14 +39,19 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
+    public void RegistrationSuccesed(){
+        Intent redirectToLogin = new Intent(this, LoginActivity.class);
+        startActivity(redirectToLogin);
+        finish();
+    }
 
     public void RegistrationService(){
         phoneNumberInput = (TextInputEditText) findViewById(R.id.username_input_registration);
-        passwordInput = (TextInputEditText) findViewById(R.id.username_input_registration);
+        passwordInput = (TextInputEditText) findViewById(R.id.password_input_registration);
         refferalCodeInput = (TextInputEditText) findViewById(R.id.code_referral_input_registration);
-        String phoneNumber = phoneNumberInput.getText().toString();
-        String password = passwordInput.getText().toString();
-        String refferalCode = refferalCodeInput.getText().toString();
+        String phoneNumber = phoneNumberInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
+        String refferalCode = refferalCodeInput.getText().toString().trim();
         Endpoint endpoint = ServiceGenerator.createService(Endpoint.class);
         RegistrationCredentials registrationCredentials = new RegistrationCredentials(phoneNumber, password, refferalCode);
         Call<RegistrationResponse> call = endpoint.registration(registrationCredentials);
@@ -66,6 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(RegistrationActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                RegistrationSuccesed();
             }
 
             @Override
