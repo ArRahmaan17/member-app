@@ -10,8 +10,17 @@ public class UserModel {
     private String name;
     private String email;
     private String address;
-    private String referral_code;
-    private boolean developer;
+    private String referral_code, qr_code;
+    private boolean developer, administration;
+
+    public String getQr_code() {
+        return qr_code;
+    }
+
+    public boolean isAdministration() {
+        return administration;
+    }
+
     private String created_at;
     private String updated_at;
 

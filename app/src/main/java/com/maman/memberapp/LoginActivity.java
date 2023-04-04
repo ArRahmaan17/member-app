@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.maman.memberapp.credentials.LoginCredentials;
+import com.maman.memberapp.helper.ServiceGenerator;
 import com.maman.memberapp.model.UserModel;
 import com.maman.memberapp.response.LoginResponse;
 import com.maman.memberapp.route.Endpoint;
@@ -77,11 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean processLoginUser(String username, String password){
-        Retrofit loginRetrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        Endpoint endpoint = loginRetrofit.create(Endpoint.class);
+        Endpoint endpoint = ServiceGenerator.createService(Endpoint.class);
         LoginCredentials user = new LoginCredentials(username, password);
         Call<LoginResponse> call = endpoint.login(user);
         call.enqueue(new Callback<LoginResponse>() {
@@ -102,13 +99,14 @@ public class LoginActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 String userString = gson.toJson(response.body().getUser());
                 UserModel user = gson.fromJson(userString, UserModel.class);
-                Log.d("login", "onResponse: " + String.valueOf(user.getId()));
                 editor.putInt("id", user.getId());
                 editor.putString("name", user.getName());
                 editor.putString("phone_number", user.getPhone_number());
                 editor.putString("address", user.getAddress());
                 editor.putString("referral_code", user.getReferral_code());
+                editor.putString("qr_code", user.getQr_code());
                 editor.putBoolean("developer", user.isDeveloper());
+                editor.putBoolean("administration", user.isAdministration());
                 editor.putString("personal_token", response.body().getToken());
                 editor.apply();
                 IntentActivity();

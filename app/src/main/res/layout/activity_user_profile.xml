@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app"
-    tools:context=".UserDetailActivity">
+    android:background="@color/main"
+    tools:context=".UserProfileActivity">
     <LinearLayout
         android:id="@+id/container_detail"
         android:layout_width="match_parent"
@@ -24,6 +24,7 @@
                 android:id="@+id/container_primary_information"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/app"
                 android:padding="10dp">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_image"
@@ -103,7 +104,9 @@
             android:layout_margin="10dp"
             android:text="Detail Transactions"
             android:layout_width="match_parent"
+            android:textColor="@color/app"
             android:layout_height="wrap_content"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/container_details_transaction"
             android:layout_width="match_parent"

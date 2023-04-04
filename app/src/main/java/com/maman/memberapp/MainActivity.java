@@ -5,16 +5,31 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.maman.memberapp.credentials.ProfileCompleteCredentials;
+import com.maman.memberapp.helper.ServiceGenerator;
 import com.maman.memberapp.model.NewsModel;
 import com.maman.memberapp.model.PromosModel;
+import com.maman.memberapp.response.SuccesResponse;
+import com.maman.memberapp.route.Endpoint;
+
 import java.util.ArrayList;
+import android.view.Window;
+import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         userCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, UserDetailActivity.class);
+                Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
                 startActivity(intent);
             }
         });
@@ -41,9 +56,48 @@ public class MainActivity extends AppCompatActivity {
     private void initializationApp() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserActive", Context.MODE_PRIVATE);
         Username = sharedPreferences.getString("name", "").toString();
+        Log.d("main", "initializationApp: "+ Username.isEmpty());
         userId = (TextView) findViewById(R.id.title_user);
         pointUser = (TextView) findViewById(R.id.title_point);
         userId.setText(Username);
+        if(Username.isEmpty()){
+            Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.complete_user_profile);
+            dialog.setCancelable(false);
+            dialog.show();
+            Button btnComplete = dialog.findViewById(R.id.button_completion_profile);
+            TextView nameInput = dialog.findViewById(R.id.name_dialog);
+            TextView addressInput = dialog.findViewById(R.id.address_dialog);
+            TextView emailInput = dialog.findViewById(R.id.email_dialog);
+            btnComplete.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Endpoint endpoint = ServiceGenerator.createService(Endpoint.class);
+                    ProfileCompleteCredentials profileComplete = new ProfileCompleteCredentials();
+                    profileComplete.setName(nameInput.getText().toString());
+                    profileComplete.setAddress(addressInput.getText().toString());
+                    profileComplete.setEmail(emailInput.getText().toString());
+                    Call<SuccesResponse> call = endpoint.completeProfile(profileComplete);
+                    call.enqueue(new Callback<SuccesResponse>() {
+                        @Override
+                        public void onResponse(Call<SuccesResponse> call, Response<SuccesResponse> response) {
+                            Toast.makeText(MainActivity.this, ""+response.code(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<SuccesResponse> call, Throwable t) {
+                            Toast.makeText(MainActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+        }else {
+            initializeAllData();
+        }
+        initPromoRecyclerView();
+    }
+    private void initializeAllData(){
         pointUser.setText("5.000.000");
         PromoList.add(new PromosModel("Dummy Promo 1", "Test Promo"));
         PromoList.add(new PromosModel("Dummy Promo 2", "Test Promo"));
@@ -58,9 +112,7 @@ public class MainActivity extends AppCompatActivity {
         NewsList.add(new NewsModel("Lorem ipsum dolor sit amet consectetur 3", "senin, 20 Desember 2022", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?..."));
         NewsList.add(new NewsModel("Lorem ipsum dolor sit amet consectetur 4", "senin, 20 Desember 2022", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?..."));
         NewsList.add(new NewsModel("Lorem ipsum dolor sit amet consectetur 5", "senin, 20 Desember 2022", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?..."));
-        initPromoRecyclerView();
     }
-
     private void initPromoRecyclerView(){
         LinearLayoutManager linearLayoutManagerPromo = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManagerNews = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);

@@ -35,7 +35,7 @@
                     android:padding="5dp"
                     android:text="Lorem ipsum dolor sit amet consectetur"
                     android:fontFamily="sans-serif-light"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="25dp" />
 
                 <TextView
@@ -45,7 +45,7 @@
                     android:padding="5dp"
                     android:text="Senin, 20 Desember 2021"
                     android:fontFamily="sans-serif-light"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -58,7 +58,7 @@
                 android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquam?..."
                 android:fontFamily="sans-serif-light"
                 android:layout_below="@+id/container_title1"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15dp" />
         </RelativeLayout>
 
