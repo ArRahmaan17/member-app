@@ -1,6 +1,7 @@
 package com.maman.memberapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -27,12 +29,30 @@ import com.maman.memberapp.model.TransactionModel;
 import java.util.ArrayList;
 
 public class UserProfileActivity extends AppCompatActivity {
+
+    private static final int REQUEST_CODE_ACTIVITY_EDIT = 1;
     private ArrayList<TransactionModel> transactionLists = new ArrayList<TransactionModel>();
     private TextView userName, userAddress, userPhoneNumber;
     private ImageView imageQr;
     private Dialog qrCodeDialog;
     private RelativeLayout containerPrimaryInformation;
     private int STORAGE_PERMISSIONS_CODE = 1;
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == REQUEST_CODE_ACTIVITY_EDIT || resultCode == RESULT_OK){
+            String name = data.getStringExtra("name");
+            userName.setText(name);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +63,7 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UserProfileActivity.this, EditUserActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_ACTIVITY_EDIT);
             }
         });
          imageQr.setOnClickListener(new View.OnClickListener() {
@@ -59,14 +79,13 @@ public class UserProfileActivity extends AppCompatActivity {
             });
         initialDetailUser();
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == STORAGE_PERMISSIONS_CODE){
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 downloadImageQrCode();
             }else{
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Access Danied To Download Your Barcode", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -104,9 +123,9 @@ public class UserProfileActivity extends AppCompatActivity {
         String Username = sharedPreferences.getString("name", "").toString();
         String PhoneNumber = sharedPreferences.getString("phone_number", "").toString();
         String Address = sharedPreferences.getString("address", "").toString();
-        TextView userName = findViewById(R.id.detail_username);
-        TextView userPhoneNumber = findViewById(R.id.detail_phone_number);
-        TextView userAddress = findViewById(R.id.detail_address);
+         userName = findViewById(R.id.detail_username);
+         userPhoneNumber = findViewById(R.id.detail_phone_number);
+         userAddress = findViewById(R.id.detail_address);
         userName.setText(Username);
         userPhoneNumber.setText(PhoneNumber);
         userAddress.setText(Address);
@@ -127,9 +146,12 @@ public class UserProfileActivity extends AppCompatActivity {
         qrCodeDialog.setCancelable(true);
         SharedPreferences sharedPreferences = getSharedPreferences("UserActive", Context.MODE_PRIVATE);
         String Qrcode = sharedPreferences.getString("qr_code", "").toString();
+        String Name = sharedPreferences.getString("name", "").toString();
         String imageUrl = "http://10.0.2.2:8000"+Qrcode;
 //        String imageUrl = "https://cdn.pixabay.com/photo/2023/03/26/03/12/ladybug-7877480_960_720.jpg";
         ImageView containerImageDialog = qrCodeDialog.findViewById(R.id.qr_code_image);
+        TextView containerTextView = qrCodeDialog.findViewById(R.id.text_detail_qrcode);
+        containerTextView.setText("Barcode "+Name);
         Glide.with(this).load(imageUrl).into(containerImageDialog);
     }
 }

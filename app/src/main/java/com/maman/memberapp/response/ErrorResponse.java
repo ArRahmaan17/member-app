@@ -13,6 +13,21 @@ public class ErrorResponse {
     private List<String> phone_number = new ArrayList<>();
     private List<String> password = new ArrayList<>();
     private List<String> refferal_code = new ArrayList<>();
+    private List<String> name = new ArrayList<>();
+    private List<String> email = new ArrayList<>();
+    private List<String> address = new ArrayList<>();
+
+    public List<String> getName() {
+        return name;
+    }
+
+    public List<String> getEmail() {
+        return email;
+    }
+
+    public List<String> getAddress() {
+        return address;
+    }
 
     public List<String> getPhone_number() {
         return phone_number;

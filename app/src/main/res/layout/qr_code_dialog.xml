@@ -10,8 +10,16 @@
     <ImageView
         android:id="@+id/qr_code_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         android:minWidth="250dp"
         android:minHeight="250dp"/>
+
+    <TextView
+        android:id="@+id/text_detail_qrcode"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

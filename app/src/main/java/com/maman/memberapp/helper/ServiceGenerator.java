@@ -1,5 +1,8 @@
 package com.maman.memberapp.helper;
 import android.text.TextUtils;
+import android.util.Log;
+
+import java.util.Optional;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -27,8 +30,7 @@ public class ServiceGenerator {
     private static OkHttpClient.Builder httpClient =
             new OkHttpClient.Builder();
 
-    public static <S> S createService(
-            Class<S> serviceClass) {
+    public static <S> S createService(Class<S> serviceClass) {
         if (!httpClient.interceptors().contains(logging)) {
             httpClient.addInterceptor(logging);
             builder.client(httpClient.build());
@@ -38,14 +40,14 @@ public class ServiceGenerator {
         return retrofit.create(serviceClass);
     }
 
-//    public static <S> S createService(Class<S> serviceClass, String authToken) {
-//        if (!TextUtils.isEmpty(authToken)) {
-//            httpClient.addInterceptor(new AuthenticationInterceptor(authToken));
-//        }
-//        builder.client(httpClient.build());
-//        retrofit = builder.build();
-//        return retrofit.create(serviceClass);
-//    }
+    public static <S> S createService(Class<S> serviceClass, String authToken) {
+        if (!TextUtils.isEmpty(authToken)) {
+            httpClient.addInterceptor(new AuthenticationInterceptor(authToken));
+        }
+        builder.client(httpClient.build());
+        retrofit = builder.build();
+        return retrofit.create(serviceClass);
+    }
 
 
 }

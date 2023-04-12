@@ -84,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                Log.d("login", "onResponse: " + response.code());
                 if(!response.isSuccessful()){
                     if(response.code() == 404){
                         Toast.makeText(LoginActivity.this, ""+response.code() + " Your credentials not match to our records", Toast.LENGTH_SHORT).show();
@@ -103,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("name", user.getName());
                 editor.putString("phone_number", user.getPhone_number());
                 editor.putString("address", user.getAddress());
+                editor.putString("email", user.getEmail());
                 editor.putString("referral_code", user.getReferral_code());
                 editor.putString("qr_code", user.getQr_code());
                 editor.putBoolean("developer", user.isDeveloper());

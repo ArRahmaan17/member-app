@@ -13,7 +13,7 @@
                motion:framePosition="100"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/promos_title"
+               motion:motionTarget="@+id/container_promotion"
                motion:framePosition="100"
                android:alpha="0" />
            <KeyAttribute
@@ -29,7 +29,7 @@
                motion:framePosition="50"
                android:alpha="0" />
            <KeyAttribute
-               motion:motionTarget="@+id/promos_title"
+               motion:motionTarget="@+id/container_promotion"
                motion:framePosition="50"
                android:alpha="0" />
        </KeyFrameSet>
@@ -59,7 +59,7 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:visibility="visible" />
         <Constraint
-            android:id="@+id/promos_title"
+            android:id="@+id/container_promotion"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

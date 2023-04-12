@@ -1,6 +1,6 @@
 package com.maman.memberapp.response;
 
-public class SuccesResponse {
+public class SuccessResponse {
     private String status, message;
 
     public String getStatus() {

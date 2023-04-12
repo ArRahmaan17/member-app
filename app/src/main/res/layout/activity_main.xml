@@ -91,19 +91,38 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/promos_title"
+    <RelativeLayout
+        android:id="@+id/container_promotion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Promo Terbaru"
-        android:textColor="@color/app"
-        android:fontFamily="sans-serif-light"
-        android:textSize="34sp"
-        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_about_user" />
+        app:layout_constraintTop_toBottomOf="@+id/container_about_user">
+
+        <TextView
+            android:id="@+id/promos_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Promo Terbaru"
+            android:textColor="@color/app"
+            android:textSize="34sp"
+            android:textStyle="italic" />
+        <Button
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/add_promo"
+            android:padding="1dp"
+            android:text="Add New Promo"
+            android:backgroundTint="@color/app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/container_promos"
@@ -115,9 +134,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/promos_title">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/container_promotion"/>
 
     <LinearLayout
         android:id="@+id/container_all_news"
@@ -125,16 +142,34 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/news_title"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Berita Terbaru"
-            android:fontFamily="sans-serif-light"
-            android:layout_margin="5dp"
-            android:textColor="@color/app"
-            android:textSize="34sp"
-            android:textStyle="italic" />
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/news_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Berita Terbaru"
+                android:textColor="@color/app"
+                android:textSize="34sp"
+                android:textStyle="italic" />
+            <Button
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/add_news"
+                android:text="Add New News"
+                android:padding="1dp"
+                android:backgroundTint="@color/app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/container_news"
