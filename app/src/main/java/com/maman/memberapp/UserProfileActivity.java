@@ -1,5 +1,6 @@
 package com.maman.memberapp;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.journeyapps.barcodescanner.CaptureActivity;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.maman.memberapp.model.TransactionModel;
 
 import java.util.ArrayList;
@@ -36,6 +41,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView imageQr;
     private Dialog qrCodeDialog;
     private RelativeLayout containerPrimaryInformation;
+    private FloatingActionButton scanActivity;
     private int STORAGE_PERMISSIONS_CODE = 1;
 
     @Override
@@ -57,6 +63,7 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        scanActivity = findViewById(R.id.scan_qr);
         imageQr = (ImageView) findViewById(R.id.user_qrcode);
         containerPrimaryInformation = (RelativeLayout) findViewById(R.id.container_primary_information);
         containerPrimaryInformation.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +71,12 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(UserProfileActivity.this, EditUserActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_ACTIVITY_EDIT);
+            }
+        });
+        scanActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanActivity();
             }
         });
          imageQr.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +92,12 @@ public class UserProfileActivity extends AppCompatActivity {
             });
         initialDetailUser();
     }
+
+    ActivityResultLauncher<ScanOptions> launcher = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null){
+            Log.d("qrcode", ": "+result.getContents());
+        }
+    });
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == STORAGE_PERMISSIONS_CODE){
@@ -90,6 +109,13 @@ public class UserProfileActivity extends AppCompatActivity {
         }
     }
 
+    private void scanActivity(){
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("Volume Up to flash on");
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        launcher.launch(options);
+    }
     private void requestStoragePermissions(){
         if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSIONS_CODE);
@@ -148,6 +174,7 @@ public class UserProfileActivity extends AppCompatActivity {
         String Qrcode = sharedPreferences.getString("qr_code", "").toString();
         String Name = sharedPreferences.getString("name", "").toString();
         String imageUrl = "http://10.0.2.2:8000"+Qrcode;
+        Log.d("qrcode",imageUrl);
 //        String imageUrl = "https://cdn.pixabay.com/photo/2023/03/26/03/12/ladybug-7877480_960_720.jpg";
         ImageView containerImageDialog = qrCodeDialog.findViewById(R.id.qr_code_image);
         TextView containerTextView = qrCodeDialog.findViewById(R.id.text_detail_qrcode);

@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 String userString = gson.toJson(response.body().getUser());
                 UserModel user = gson.fromJson(userString, UserModel.class);
                 editor.putInt("id", user.getId());
+                editor.putInt("point", user.getPoint());
                 editor.putString("name", user.getName());
                 editor.putString("phone_number", user.getPhone_number());
                 editor.putString("address", user.getAddress());

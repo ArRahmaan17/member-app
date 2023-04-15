@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<NewsModel> NewsList = new ArrayList<NewsModel>();
     private TextView userId, pointUser;
     private String Username;
+    private int point;
     private Dialog globalDialog;
     private Button addNewPromoButton, addNewNewsButton;
     private CardView userCard;
@@ -87,14 +89,15 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("UserActive", Context.MODE_PRIVATE);
         Username = sharedPreferences.getString("name", "").toString();
         boolean developer = sharedPreferences.getBoolean("developer", false);
+        point = sharedPreferences.getInt("point", 0);
         boolean administration = sharedPreferences.getBoolean("administration", false);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if(!developer || !administration){
+//        if(!developer || !administration){
             addNewPromoButton = findViewById(R.id.add_promo);
             addNewNewsButton = findViewById(R.id.add_news);
             addNewNewsButton.setVisibility(View.GONE);
             addNewPromoButton.setVisibility(View.GONE);
-        }
+//        }
         if(Username.isEmpty()){
             Dialog dialog = new Dialog(this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -155,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         userId = (TextView) findViewById(R.id.title_user);
         pointUser = (TextView) findViewById(R.id.title_point);
         userId.setText(Username);
-        pointUser.setText("5.000.000");
+        pointUser.setText(""+point);
         PromoList.add(new PromosModel("Dummy Promo 1", "Test Promo"));
         PromoList.add(new PromosModel("Dummy Promo 2", "Test Promo"));
         PromoList.add(new PromosModel("Dummy Promo 3", "Test Promo"));

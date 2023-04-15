@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.google.gson.annotations.SerializedName;
 
 public class UserModel {
-    private int id;
+    private int id, point;
     private String phone_number;
     private String name;
     private String email;
@@ -16,7 +16,9 @@ public class UserModel {
     public String getQr_code() {
         return qr_code;
     }
-
+    public int getPoint() {
+        return point;
+    }
     public boolean isAdministration() {
         return administration;
     }

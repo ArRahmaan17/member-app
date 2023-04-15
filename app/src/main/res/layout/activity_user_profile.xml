@@ -1,116 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main"
     tools:context=".UserProfileActivity">
-    <LinearLayout
-        android:id="@+id/container_detail"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_detail_user_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/container_primary_information"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:cardElevation="5dp"
-            app:cardCornerRadius="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp">
-            <RelativeLayout
-                android:id="@+id/container_primary_information"
+            android:background="@color/app"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/app"
-                android:padding="10dp">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/user_image"
-                    android:layout_marginStart="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxHeight="70dp"
-                    android:layout_centerVertical="true"
-                    android:maxWidth="70dp"
-                    android:src="@mipmap/ic_logo"
-                    />
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:maxWidth="70dp"
+                android:maxHeight="70dp"
+                android:src="@mipmap/ic_logo" />
 
-                <LinearLayout
-                    android:id="@+id/container_user_description"
+            <LinearLayout
+                android:id="@+id/container_user_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@id/user_image"
+                android:minWidth="230dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detail_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="5dp"
-                    android:layout_toEndOf="@id/user_image"
-                    android:minWidth="230dp"
-                    android:orientation="vertical">
+                    android:ellipsize="end"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:text="Username"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/detail_username"
+                        android:id="@+id/detail_phone_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="Username"
-                        android:maxLength="25"
+                        android:layout_marginTop="1dp"
                         android:ellipsize="end"
+                        android:maxLength="25"
                         android:maxLines="1"
-                        android:textSize="20sp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/detail_phone_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="1dp"
-                            android:text="Phone Number"
-                            android:maxLength="25"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:textSize="14sp" />
-                        <TextView
-                            android:id="@+id/detail_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="1dp"
-                            android:text="Address User"
-                            android:maxLength="25"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:textSize="14sp" />
-                    </LinearLayout>
+                        android:text="Phone Number"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/detail_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="1dp"
+                        android:ellipsize="end"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:text="Address User"
+                        android:textSize="14sp" />
                 </LinearLayout>
+            </LinearLayout>
 
-                <ImageView
-                    android:layout_toEndOf="@id/container_user_description"
-                    android:layout_alignParentEnd="true"
-                    android:id="@+id/user_qrcode"
-                    android:src="@drawable/qr_code"
-                    android:layout_width="wrap_content"
-                    android:backgroundTint="@color/app_night"
-                    android:layout_centerVertical="true"
-                    android:layout_height="30dp"/>
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/user_qrcode"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/container_user_description"
+                android:backgroundTint="@color/app_night"
+                android:src="@drawable/qr_code" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/title_details_transaction"
-            android:textSize="20sp"
-            android:layout_margin="10dp"
-            android:text="Detail Transactions"
-            android:layout_width="match_parent"
-            android:textColor="@color/app"
-            android:layout_height="wrap_content"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/scan_qr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/main"
+        android:clickable="true"
+        android:src="@drawable/outline_camera_alt_24"
+        app:rippleColor="@color/app"
+        android:layout_marginTop="-15dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/card_detail_user_profile"
+        app:layout_constraintTop_toBottomOf="@+id/card_detail_user_profile"
+        android:focusable="true" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/container_details_transaction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/title_details_transaction"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/card_detail_user_profile"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Detail Transactions"
+        android:textColor="@color/app"
+        android:textSize="20sp" />
 
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@id/title_details_transaction"
+        android:id="@+id/container_details_transaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
